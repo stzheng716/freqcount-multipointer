@@ -4,27 +4,33 @@
  * letter return a boolean */
 
 function canConstructWord(word, letters) {
-    if(letters.length === 0) return false;
-    const wordObj = getFrequency(word)
-    const lettersObj = getFrequency(letters)
+    if(word.length > letters.length) return false;
+
+    const wordObj = getFrequency(word);
+    const lettersObj = getFrequency(letters);
 
     for(let char in wordObj){
-
         if(!char in lettersObj){
             return false;
         }
+
         if(wordObj[char] > lettersObj[char]){
             return false;
         }
     }
+
     return true;
 }
 
+/** take in a string and returns a object of the frequency */
+
 function getFrequency(string){
     let charObj = {};
+
     for(let char of string){
-        charObj[char] = (charObj[char] || 0) + 1
+        charObj[char] = (charObj[char] || 0) + 1;
     }
+
     return charObj;
 }
 
